@@ -1,0 +1,68 @@
+import java.util.*;
+import java.lang.*;
+
+public class HorseManager {
+    private int generalDistance;
+    ArrayList<Horse> collection;
+
+    public int getGeneralDistance() {
+        return generalDistance;
+    }
+
+    public void setGeneralDistance(int generalDistance) {
+        this.generalDistance = generalDistance;
+    }
+
+    HorseManager(int a) {
+        collection = new ArrayList<>();
+        for (int i = 0; i < a; i++) {
+            collection.add(new Horse());
+        }
+    }
+
+    public void horsesRunInOneRace() {
+        for (Horse horse : collection) {
+            horse.horseRun();
+        }
+    }
+
+    public boolean isRacingOver() {
+        for (Horse horse : collection) {
+            if (horse.getIndHorseDistance() >= generalDistance) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int rangeHorsesAndReturnPlace(int userHorse) {
+        Horse[] collection2 = new Horse[collection.size()];
+        for (int i = 0; i < collection.size(); i++) {
+            collection2[i] = collection.get(i);
+        }
+        int result = 0;
+        for (int i = 0; i < collection2.length; i++) {
+            for (int j = i + 1; j < collection2.length; j++) {
+                if (collection2[i].getIndHorseDistance() < collection2[j].getIndHorseDistance()) {
+                    Horse temp = collection2[i];
+                    collection2[i] = collection2[j];
+                    collection2[j] = temp;
+                }
+            }
+        }
+        for (int i = 0; i < collection2.length; i++) {
+            if ((int) (collection2[i].getHorseId()) == userHorse) {
+                result = i + 1;
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        for (Horse horse : collection) {
+            System.out.println("Лошадь " + horse.getHorseId() + " уже пробежала " + horse.getIndHorseDistance() + " м;");
+        }
+        return "";
+    }
+}
