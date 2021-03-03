@@ -1,0 +1,50 @@
+public class Horse {
+    private static int count = 0;
+    private int horseId;
+    private int minSpeed;
+    private int maxSpeed;
+    private int indHorseDistance;
+
+    public int getHorseId() {
+        return horseId;
+    }
+
+    public int getMinSpeed() {
+        return minSpeed;
+    }
+
+    public int getMaxSpeed() {
+        return maxSpeed;
+    }
+
+    public int getIndHorseDistance() {
+        return indHorseDistance;
+    }
+
+    public void horseRun() {
+       indHorseDistance += (int) (Math.random() * (maxSpeed - minSpeed) + minSpeed);
+    }
+
+    Horse() {
+        count++;
+        horseId = count;
+        minSpeed = generateMinSpeed();
+        maxSpeed = generateMaxSpeed();
+        indHorseDistance = 0;
+    }
+
+    private int generateMaxSpeed() {
+        return (int) (Math.random() * 16 + 1); //максимальная скорость лошади может достигать 17 м/с
+    }
+
+    private int generateMinSpeed() {
+        return (int) (Math.random() * 3 + 1);
+    }
+
+    @Override
+    public String toString() {
+        System.out.print("Лошадь " + horseId + " уже пробежала " + indHorseDistance + " м");
+        return "";
+    }
+
+}
