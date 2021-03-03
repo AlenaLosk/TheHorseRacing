@@ -22,7 +22,7 @@ public class Horse {
     }
 
     public void horseRun() {
-       indHorseDistance += (int) (Math.random() * (maxSpeed - minSpeed) + minSpeed);
+        indHorseDistance += (int) (Math.random() * (maxSpeed - minSpeed) + minSpeed);
     }
 
     Horse() {
@@ -46,5 +46,4 @@ public class Horse {
         System.out.print("Лошадь " + horseId + " уже пробежала " + indHorseDistance + " м");
         return "";
     }
-
 }
