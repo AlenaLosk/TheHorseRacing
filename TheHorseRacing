@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+public class TheHorseRacing {
+    public static void main(String[] args) {
+        System.out.println("Игра-тотализатор \"Скачки\" началась!");
+        int quantityOfHorse = askUserInt("Введите количество лошадей, участвующих в забеге: ");
+        HorseManager horseManager = new HorseManager(quantityOfHorse);
+        horseManager.setGeneralDistance(askUserInt("Введите длину дистанции, которую предстоит пробежать всем лошадям\n" +
+                "(например, любую от 1600 до 2500 м): "));
+        int userWinner = askUserInt("Введите номер лошади, которая выиграет (не более " + quantityOfHorse + "): ");
+        while (!horseManager.isRacingOver()) {
+            horseManager.horsesRunInOneRace();
+            System.out.println(horseManager);
+        }
+        horseManager.rangeHorsesAndReturnPlace(userWinner);
+        System.out.println("Лошадь, на которую вы сделали ставку, заняла " + horseManager.rangeHorsesAndReturnPlace(userWinner) + " место.");
+    }
+
+    public static int askUserInt(String text) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print(text);
+        if (scanner.hasNextInt()) {
+            return scanner.nextInt();
+        }
+        scanner.nextLine();
+        return -1;
+    }
+}
